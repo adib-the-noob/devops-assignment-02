@@ -1,37 +1,55 @@
-# Setting up SSH key
+### Deploying an Application Using Nginx
 
-```bash
-➜  ~ ssh-keygen -t ed25519 -C "md...0@gmail.com" -f ~/.ssh/my_droplet_key
+1. **Setting Up API Servers**  
+    Two API servers were set up:  
+    - A Node.js server running on port `3000`.  
+    - A Python server running on port `5000`.  
 
-Generating public/private ed25519 key pair.
+    Both servers were started using the `run.sh` script after installing all the dependencies.
 
-Your identification has been saved in /home/adib/.ssh/my_droplet_key
-Your public key has been saved in /home/adib/.ssh/my_droplet_key.pub
+2. **Updating `/etc/hosts`**  
+    Added the following entries to the `/etc/hosts` file:  
+    ```plaintext
+    127.0.0.1 app1.local
+    127.0.0.1 app2.local
+    ```
 
-The key fingerprint is:
-SHA256:........Hr4 m...0@gmail.com
+3. **Configuring Nginx**  
+    Configured Nginx to route traffic to the respective servers using the following steps:  
 
-The key's randomart image is:
-+--[ED25519 256]--+
-|              .**|
-|           .**.**|
-|        .**.**.**|
-|        .**.**.**|
-|     S c.**.**.**|
-|        .**.**.**|
-|        .**.**.**|
-|        .**.**.**|
-|        .**.**.**|
-|                 |
-+----[SHA256]-----+
-```
+    - Create a new file in `/etc/nginx/sites-available/` named `app1.conf` with the following content:
+      ```nginx
+      server {
+            listen 80;
+            server_name app1.local;
 
-```bash
-➜  ~ cat /home/adib/.ssh/my_droplet_key.pub
-ssh-ed25519 AAAAC3N.........SS m....50@gmail.com
-```
-Now, we need to add this public key to the DigitalOcean droplet.
+            location / {
+                 proxy_pass http://127.0.0.1:3000;
+            }
+      }
+      ```
 
-```bash
-➜  ~ ssh -i ~/.ssh/my_droplet_key adib@<vm-ip>  
-```
+    - Create another file in `/etc/nginx/sites-available/` named `app2.conf` with the following content:
+      ```nginx
+      server {
+            listen 80;
+            server_name app2.local;
+
+            location / {
+                 proxy_pass http://127.0.0.1:5000;
+            }
+      }
+      ```
+
+    - Enable the configurations by creating symbolic links in `/etc/nginx/sites-enabled/`:
+      ```bash
+      sudo ln -s /etc/nginx/sites-available/app1.conf /etc/nginx/sites-enabled/
+      sudo ln -s /etc/nginx/sites-available/app2.conf /etc/nginx/sites-enabled/
+      ```
+
+4. **Testing in Browser**  
+    Access `http://app1.local` and `http://app2.local` in the browser to verify the setup.
+
+5. **Demo Video**  
+    Below is a demo video showcasing the deployment process:  
+    [![Demo Video](https://img.youtube.com/vi/your_video_id/0.jpg)](https://www.youtube.com/watch?v=your_video_id)
