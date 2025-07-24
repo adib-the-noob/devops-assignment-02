@@ -53,3 +53,7 @@
 5. **Demo Video**  
     Below is a demo video showcasing the deployment process:  
     [![Demo Video](https://img.youtube.com/vi/1KHZ4vXCm1I/sddefault.jpg)](https://www.youtube.com/watch?v=1KHZ4vXCm1I)
+
+
+### A Simple Diagram
+![Deployment Diagram](diagram.svg)
