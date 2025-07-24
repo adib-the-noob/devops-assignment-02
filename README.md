@@ -28,7 +28,7 @@ The key's randomart image is:
 
 ```bash
 ➜  ~ cat /home/adib/.ssh/my_droplet_key.pub
-ssh-ed25519 AAAAC3N...4+c9...j+f...SS m....50@gmail.com
+ssh-ed25519 AAAAC3N.........SS m....50@gmail.com
 ```
 Now, we need to add this public key to the DigitalOcean droplet.
 
