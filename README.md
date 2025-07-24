@@ -52,4 +52,4 @@
 
 5. **Demo Video**  
     Below is a demo video showcasing the deployment process:  
-    [![Demo Video](https://img.youtube.com/vi/your_video_id/0.jpg)](https://www.youtube.com/watch?v=your_video_id)
+    [![Demo Video](https://img.youtube.com/vi/1KHZ4vXCm1I/sddefault.jpg)](https://www.youtube.com/watch?v=1KHZ4vXCm1I)
