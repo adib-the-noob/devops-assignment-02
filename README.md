@@ -1,4 +1,5 @@
-### Deploying an Application Using Nginx
+## Deploying an Application Using Nginx
+---
 #### About This Project  
 This project demonstrates deploying applications using Nginx, showcasing a setup reminiscent of deployment practices from 2005.
 1. **Setting Up API Servers**  
